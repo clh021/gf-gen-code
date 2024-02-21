@@ -21,3 +21,7 @@ build: buildv1
 buildv1:
 	@docker run -it --rm -v `pwd`:/app -w /app -e CGO_ENABLED=1 -u ${UID}:${GID} leehom/detect:centos7.go1.19 go build -mod vendor -ldflags "-s -w -X github.com/clh021/gf-gen-code/cmd/v1/cmd.BuiltGit=${gitCID} -X github.com/clh021/gf-gen-code/cmd/v1/cmd.BuiltTime=${gitTime}" -o tmp/gf_gen cmd/v1/*.go
 #	cd tmp/; zip -r -q "gf_gen.${fileTime}.zip" gf_gen
+
+.PHONY: test
+test:
+	./tmp/gf_gen -c ./tmp/config.yaml

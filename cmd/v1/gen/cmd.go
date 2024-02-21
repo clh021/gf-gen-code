@@ -36,17 +36,13 @@ type cInput struct {
 	// 这里不要加太多校验规则，因为参数不通过时，无法友好的将错误提示给用户
 	// 也无法进入自主流程，所以不使用校验规则
 	g.Meta  `name:"{cName}"`
-	Version bool `short:"v" name:"version"     brief:"Display the program's version information"    orphan:"true"`
-	Debug   bool `short:"d" name:"debug"       brief:"Display debug information during scanning"    orphan:"true"`
+	Version bool   `short:"v" name:"version"     brief:"Display the program's version information"   orphan:"true"`
+	Debug   bool   `short:"d" name:"debug"       brief:"Display debug information during running"    orphan:"true"`
+	Cfg     string `short:"c" name:"cfg"         brief:"Config file path"                            d:"./hack/config.yaml"`
 }
 
 type cOutput struct{}
 
-func (c cGEN) setInputDefault(ctx context.Context, in cInput) (inNew cInput, out *cOutput, err error) {
-	// 设置默认值
-	inNew = in
-	return
-}
 func (c cGEN) validInput(ctx context.Context, in cInput) (out *cOutput, err error) {
 	return
 }
@@ -62,17 +58,13 @@ func (c cGEN) Index(ctx context.Context, in cInput) (out *cOutput, err error) {
 		return
 	}
 
-	// Set Input Default
-	in, _, err = c.setInputDefault(ctx, in)
-	if err != nil {
-		return
-	}
-
 	// Valid Input
 	out, err = c.validInput(ctx, in)
 	if err != nil {
 		return
 	}
+
+	g.Dump(in)
 
 	// gcmd.CommandFromCtx(ctx).Print()
 	return
