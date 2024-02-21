@@ -114,20 +114,20 @@
 -- 进而可以进行下一步操作了。
 
 CREATE TABLE IF NOT EXISTS `credits` (
-  `id` bigint NOT NULL,
-  `member_id` bigint DEFAULT '0',
-  `app_id` varchar(64) DEFAULT '',
-  `addons_name` varchar(100) NOT NULL DEFAULT '',
-  `credit_type` varchar(32) NOT NULL DEFAULT '',
-  `credit_group` varchar(32) DEFAULT '',
-  `before_num` decimal(10,2) DEFAULT '0.00',
-  `num` decimal(10,2) DEFAULT '0.00',
-  `after_num` decimal(10,2) DEFAULT '0.00',
-  `remark` varchar(255) DEFAULT '',
-  `ip` varchar(20) DEFAULT '',
-  `map_id` bigint DEFAULT '0',
-  `status` tinyint(1) DEFAULT '1',
-  `created_at` datetime DEFAULT NULL,
+  `id` bigint NOT NULL,                              -- 编号
+  `member_id` bigint DEFAULT '0',                    -- 会员编号
+  `app_id` varchar(64) DEFAULT '',                   -- 应用编号
+  `addons_name` varchar(100) NOT NULL DEFAULT '',    -- 插件名称
+  `pay_type` varchar(32) NOT NULL DEFAULT '',     -- 支付方式
+  `pay_group` varchar(32) DEFAULT '',             -- 年龄
+  `before_num` decimal(10,2) DEFAULT '0.00',         -- 年龄
+  `num` decimal(10,2) DEFAULT '0.00',                -- 年龄
+  `after_num` decimal(10,2) DEFAULT '0.00',          -- 年龄
+  `remark` varchar(255) DEFAULT '',                  -- 年龄
+  `ip` varchar(20) DEFAULT '',                      -- 年龄
+  `map_id` bigint DEFAULT '0',                      -- 年龄
+  `status` tinyint(1) DEFAULT '1',                  -- 年龄
+  `created_at` datetime DEFAULT NULL, -- 年龄
   `updated_at` datetime DEFAULT NULL
 );
 
