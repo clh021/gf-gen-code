@@ -7,9 +7,9 @@ script_dir="$(dirname "$0")"
 scripts_path="$script_dir/scripts"
 
 # 0.检查当前是否处在 gf 项目下
-if ! "$scripts_path/0.check_gf_project.sh"; then
-  exit 1
-fi
+# if ! "$scripts_path/0.check_gf_project.sh"; then
+#   exit 1
+# fi
 
 # 1.得到当前生成操作的配置
 # 使用命令替换捕获子脚本的输出到数组中（每一行作为一个元素）
