@@ -2,10 +2,12 @@ package gen
 
 import (
 	"context"
+	"log"
 
 	"github.com/clh021/gf-gen-code/cmd/v1/mlog"
+	"github.com/clh021/gf-gen-code/service/cfg"
+	"github.com/clh021/gf-gen-code/service/db"
 	"github.com/gogf/gf/v2/frame/g"
-	"github.com/gogf/gf/v2/os/gcfg"
 	"github.com/gogf/gf/v2/os/gfile"
 	"github.com/gogf/gf/v2/util/gtag"
 )
@@ -58,36 +60,6 @@ func (c cGEN) validInput(ctx context.Context, in cInput) (out *cOutput, err erro
 	return
 }
 
-func (c cGEN) setConfig(ctx context.Context, cfgPath string) (link, table string) {
-	// 默认配置文件行为
-	// 会按照文件后缀toml/yaml/yml/json/ini/xml/properties自动检索配置文件。
-	// 当前工作目录,当前可执行文件所在目录,当前main源代码包所在目录
-	// ./
-	// ./config
-	// ./manifest/config
-	// ------------------------------------------------------------------
-	// 这里将消除默认行为，直接读取用户配置的配置文件路径
-	// cfgDir := gfile.Dir(cfgPath)
-	// genv.Set("GF_GCFG_PATH", cfgDir) // -- 消除多级目录搜索成功
-	// g.Cfg().GetAdapter().(*gcfg.AdapterFile).SetPath(cfgDir) // -- 消除多级搜索失败
-	// paths := 	g.Cfg().GetAdapter().(*gcfg.AdapterFile).GetPaths()
-	// g.Dump(paths)
-	// genv.Set("GF_GCFG_FILE", "configu9g0dsa.gr8ewqtn4m3qgf.dewgrewjgrkewfje.prod") // -- 修改默认配置文件名成功
-	// g.Cfg().GetAdapter().(*gcfg.AdapterFile).SetFileName("default.yaml") // -- 修改默认配置文件名成功
-	// cfgName := 	g.Cfg().GetAdapter().(*gcfg.AdapterFile).GetFileName()
-	// g.Dump(cfgName)
-	// 不使用框架自带配置，独立使用传参来获取数据结果
-	cfgContent := gfile.GetContents(cfgPath)
-	adapter, err := gcfg.NewAdapterContent(cfgContent)
-	if err != nil {
-		panic(err)
-	}
-	config := gcfg.NewWithAdapter(adapter)
-	link = config.MustGet(ctx,"gfcli.gen.dao.link").String()
-	table = config.MustGet(ctx,"gfcli.gen.dao.table").String()
-	return
-}
-
 func (c cGEN) Index(ctx context.Context, in cInput) (out *cOutput, err error) {
 	if in.Debug {
 		mlog.SetDebug(true)
@@ -105,10 +77,25 @@ func (c cGEN) Index(ctx context.Context, in cInput) (out *cOutput, err error) {
 		return
 	}
 
-	g.Dump(in)
-	link, table := c.setConfig(ctx, in.Cfg)
-	g.Dump(link)
-	g.Dump(table)
+	cfg, err := cfg.GetByFilePath(ctx, in.Cfg)
+	if err != nil {
+		mlog.Fatal(err)
+		return
+	}
+	link := cfg.MustGet(ctx,"gfcli.gen.dao.link").String()
+	table := cfg.MustGet(ctx,"gfcli.gen.dao.table").String()
+	log.Printf("link: %s", link)
+	log.Printf("table: %s", table)
+	Db, err := db.New(link, table)
+	if err != nil {
+		return nil, err
+	}
+	tables, err := Db.CheckMergeTables(ctx)
+	if err != nil {
+		return nil, err
+	}
+	log.Println("MergeTables:")
+	g.Dump(tables)
 
 	// gcmd.CommandFromCtx(ctx).Print()
 	return
