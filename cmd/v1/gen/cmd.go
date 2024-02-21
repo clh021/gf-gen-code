@@ -86,21 +86,8 @@ func (c cGEN) Index(ctx context.Context, in cInput) (out *cOutput, err error) {
 	table := cfg.MustGet(ctx,"gfcli.gen.dao.table").String()
 	log.Printf("link: %s", link)
 	log.Printf("table: %s", table)
-	Db, err := db.New(link, table, ctx)
-	if err != nil {
-		return nil, err
-	}
-	tables, err := Db.CheckMergeTables()
-	if err != nil {
-		return nil, err
-	}
-	log.Println("MergeTables:")
-	g.Dump(tables)
-	fields, err := Db.Fields(tables[0])
-	if err != nil {
-		return nil, err
-	}
-	g.Dump(fields)
+	db.TestGetComment()
+	// getTableStruct(link, table, ctx)
 
 	// 进行时，发现 gf 是会处理表注释的，只是 sqlite 没有像 mysql 一样直接支持。
 	// 按照本项目的思路
@@ -115,4 +102,22 @@ func (c cGEN) Index(ctx context.Context, in cInput) (out *cOutput, err error) {
 	// 再下一步就可以写 crud 了。
 	// gcmd.CommandFromCtx(ctx).Print()
 	return
+}
+
+func getTableStruct(link, table string, ctx context.Context) {
+	Db, err := db.New(link, table, ctx)
+	if err != nil {
+		mlog.Fatal(err)
+	}
+	tables, err := Db.CheckMergeTables()
+	if err != nil {
+		mlog.Fatal(err)
+	}
+	log.Println("MergeTables:")
+	g.Dump(tables)
+	fields, err := Db.Fields(tables[0])
+	if err != nil {
+		mlog.Fatal(err)
+	}
+	g.Dump(fields)
 }
