@@ -86,16 +86,21 @@ func (c cGEN) Index(ctx context.Context, in cInput) (out *cOutput, err error) {
 	table := cfg.MustGet(ctx,"gfcli.gen.dao.table").String()
 	log.Printf("link: %s", link)
 	log.Printf("table: %s", table)
-	Db, err := db.New(link, table)
+	Db, err := db.New(link, table, ctx)
 	if err != nil {
 		return nil, err
 	}
-	tables, err := Db.CheckMergeTables(ctx)
+	tables, err := Db.CheckMergeTables()
 	if err != nil {
 		return nil, err
 	}
 	log.Println("MergeTables:")
 	g.Dump(tables)
+	fields, err := Db.Fields(tables[0])
+	if err != nil {
+		return nil, err
+	}
+	g.Dump(fields)
 
 	// gcmd.CommandFromCtx(ctx).Print()
 	return
