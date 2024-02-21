@@ -5,12 +5,18 @@ github.com/BurntSushi/toml/internal
 # github.com/clbanning/mxj/v2 v2.7.0
 ## explicit; go 1.15
 github.com/clbanning/mxj/v2
+# github.com/dustin/go-humanize v1.0.1
+## explicit; go 1.16
+github.com/dustin/go-humanize
 # github.com/fatih/color v1.15.0
 ## explicit; go 1.17
 github.com/fatih/color
 # github.com/fsnotify/fsnotify v1.7.0
 ## explicit; go 1.17
 github.com/fsnotify/fsnotify
+# github.com/glebarez/go-sqlite v1.21.2
+## explicit; go 1.17
+github.com/glebarez/go-sqlite
 # github.com/go-logr/logr v1.2.4
 ## explicit; go 1.16
 github.com/go-logr/logr
@@ -18,13 +24,9 @@ github.com/go-logr/logr/funcr
 # github.com/go-logr/stdr v1.2.2
 ## explicit; go 1.16
 github.com/go-logr/stdr
-# github.com/gogf/gf/cmd/gf/v2 v2.6.3
+# github.com/gogf/gf/contrib/drivers/sqlite/v2 v2.6.3
 ## explicit; go 1.18
-github.com/gogf/gf/cmd/gf/v2/internal/cmd/genctrl
-github.com/gogf/gf/cmd/gf/v2/internal/cmd/genservice
-github.com/gogf/gf/cmd/gf/v2/internal/consts
-github.com/gogf/gf/cmd/gf/v2/internal/utility/mlog
-github.com/gogf/gf/cmd/gf/v2/internal/utility/utils
+github.com/gogf/gf/contrib/drivers/sqlite/v2
 # github.com/gogf/gf/v2 v2.6.3
 ## explicit; go 1.18
 github.com/gogf/gf/v2
@@ -119,6 +121,9 @@ github.com/gogf/gf/v2/util/guid
 github.com/gogf/gf/v2/util/gutil
 github.com/gogf/gf/v2/util/gvalid
 github.com/gogf/gf/v2/util/gvalid/internal/builtin
+# github.com/google/uuid v1.3.0
+## explicit
+github.com/google/uuid
 # github.com/gorilla/websocket v1.5.0
 ## explicit; go 1.12
 github.com/gorilla/websocket
@@ -140,6 +145,9 @@ github.com/mattn/go-runewidth
 # github.com/olekukonko/tablewriter v0.0.5
 ## explicit; go 1.12
 github.com/olekukonko/tablewriter
+# github.com/remyoudompheng/bigfft v0.0.0-20230129092748-24d4a6f8daec
+## explicit; go 1.12
+github.com/remyoudompheng/bigfft
 # github.com/rivo/uniseg v0.4.4
 ## explicit; go 1.18
 github.com/rivo/uniseg
@@ -167,18 +175,12 @@ go.opentelemetry.io/otel/sdk/trace
 # go.opentelemetry.io/otel/trace v1.14.0
 ## explicit; go 1.18
 go.opentelemetry.io/otel/trace
-# golang.org/x/mod v0.9.0
-## explicit; go 1.17
-golang.org/x/mod/internal/lazyregexp
-golang.org/x/mod/module
-golang.org/x/mod/semver
 # golang.org/x/net v0.17.0
 ## explicit; go 1.17
 golang.org/x/net/internal/socks
 golang.org/x/net/proxy
 # golang.org/x/sys v0.13.0
 ## explicit; go 1.17
-golang.org/x/sys/execabs
 golang.org/x/sys/unix
 golang.org/x/sys/windows
 golang.org/x/sys/windows/registry
@@ -197,19 +199,43 @@ golang.org/x/text/encoding/unicode
 golang.org/x/text/internal/utf8internal
 golang.org/x/text/runes
 golang.org/x/text/transform
-# golang.org/x/tools v0.7.0
-## explicit; go 1.18
-golang.org/x/tools/go/ast/astutil
-golang.org/x/tools/imports
-golang.org/x/tools/internal/event
-golang.org/x/tools/internal/event/core
-golang.org/x/tools/internal/event/keys
-golang.org/x/tools/internal/event/label
-golang.org/x/tools/internal/fastwalk
-golang.org/x/tools/internal/gocommand
-golang.org/x/tools/internal/gopathwalk
-golang.org/x/tools/internal/imports
-golang.org/x/tools/internal/typeparams
 # gopkg.in/yaml.v3 v3.0.1
 ## explicit
 gopkg.in/yaml.v3
+# modernc.org/libc v1.22.5
+## explicit; go 1.18
+modernc.org/libc
+modernc.org/libc/errno
+modernc.org/libc/fcntl
+modernc.org/libc/fts
+modernc.org/libc/grp
+modernc.org/libc/honnef.co/go/netdb
+modernc.org/libc/langinfo
+modernc.org/libc/limits
+modernc.org/libc/netdb
+modernc.org/libc/netinet/in
+modernc.org/libc/poll
+modernc.org/libc/pthread
+modernc.org/libc/pwd
+modernc.org/libc/signal
+modernc.org/libc/stdio
+modernc.org/libc/stdlib
+modernc.org/libc/sys/socket
+modernc.org/libc/sys/stat
+modernc.org/libc/sys/types
+modernc.org/libc/termios
+modernc.org/libc/time
+modernc.org/libc/unistd
+modernc.org/libc/utime
+modernc.org/libc/uuid
+modernc.org/libc/uuid/uuid
+modernc.org/libc/wctype
+# modernc.org/mathutil v1.5.0
+## explicit; go 1.13
+modernc.org/mathutil
+# modernc.org/memory v1.5.0
+## explicit; go 1.18
+modernc.org/memory
+# modernc.org/sqlite v1.23.1
+## explicit; go 1.18
+modernc.org/sqlite/lib
