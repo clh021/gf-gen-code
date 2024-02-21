@@ -102,6 +102,17 @@ func (c cGEN) Index(ctx context.Context, in cInput) (out *cOutput, err error) {
 	}
 	g.Dump(fields)
 
+	// 进行时，发现 gf 是会处理表注释的，只是 sqlite 没有像 mysql 一样直接支持。
+	// 按照本项目的思路
+	// 修改 sqlite 对应的代码文件
+	// contrib/drivers/sqlite/sqlite_table_fields.go
+	// contrib/drivers/sqlite/sqlite_z_unit_core_test.go
+	// 像 mysql 对应的代码文件一样即可
+	// contrib/drivers/mysql/mysql_table_fields.go
+	// contrib/drivers/mysql/mysql_z_unit_core_test.go
+	// 尝试直接修改这个部分，也许还能合并进去，及时不能合并进去，也可以先自己用。
+	// 就这么干……
+	// 再下一步就可以写 crud 了。
 	// gcmd.CommandFromCtx(ctx).Print()
 	return
 }
