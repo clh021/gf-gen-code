@@ -1,4 +1,4 @@
-package genlogic
+package test
 
 import (
 	"context"
@@ -9,41 +9,41 @@ import (
 )
 
 var (
-	Logic = cLogic{}
+	Test = cTest{}
 )
 
-type cLogic struct {
-	g.Meta `name:"logic" brief:"genereate logic defined go file" eg:"{cLogicEg}" `
+type cTest struct {
+	g.Meta `name:"test" brief:"genereate test defined go file" eg:"{cTestEg}" `
 }
 
 const (
-	cLogicEg     = `
-gf_gen logic
-gf_gen logic -a
-gf_gen logic -c
-gf_gen logic -cf
+	cTestEg     = `
+gf_gen test
+gf_gen test -a
+gf_gen test -c
+gf_gen test -cf
 `
 )
 
 func init() {
 	gtag.Sets(g.MapStrStr{
-		`cLogicEg`: cLogicEg,
+		`cTestEg`: cTestEg,
 	})
 }
 
-type cLogicInput struct {
-	g.Meta `name:"logic"  config:"gfcli.logic"`
+type cTestInput struct {
+	g.Meta `name:"test"  config:"gfcli.test"`
 	All    bool `name:"all" short:"a" brief:"upgrade both version and cli, auto fix codes" orphan:"true"`
 	Cli    bool `name:"cli" short:"c" brief:"also upgrade CLI tool" orphan:"true"`
 	Fix    bool `name:"fix" short:"f" brief:"auto fix codes(it only make sense if cli is to be upgraded)" orphan:"true"`
 }
 
-type cLogicOutput struct{}
+type cTestOutput struct{}
 
-func (c cLogic) Index(ctx context.Context, in cLogicInput) (out *cLogicOutput, err error) {
+func (c cTest) Index(ctx context.Context, in cTestInput) (out *cTestOutput, err error) {
 	defer func() {
 		if err == nil {
-			mlog.Print(`Done! logic defined go file has been generated.`)
+			mlog.Print(`Done!`)
 		}
 	}()
 	return

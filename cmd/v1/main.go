@@ -8,10 +8,12 @@ import (
 	"github.com/clh021/gf-gen-code/cmd/v1/genlogic"
 	"github.com/clh021/gf-gen-code/cmd/v1/genweb"
 	"github.com/clh021/gf-gen-code/cmd/v1/root"
+	"github.com/clh021/gf-gen-code/cmd/v1/test"
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/os/gcmd"
 	"github.com/gogf/gf/v2/os/gctx"
 )
+
 type Command struct {
 	*gcmd.Command
 }
@@ -21,18 +23,15 @@ func GetCommand(ctx context.Context) (*Command, error) {
 	if err != nil {
 		panic(err)
 	}
-	err = root.AddObject(
+	if err = root.AddObject(
 		genapi.Api,
 		genlogic.Logic,
 		genweb.Web,
-	)
-	if err != nil {
+		test.Test,
+	); err != nil {
 		return nil, err
 	}
-	command := &Command{
-		root,
-	}
-	return command, nil
+	return &Command{root}, nil
 }
 
 func main() {

@@ -1,4 +1,4 @@
-package genlogic
+package genweb
 
 import (
 	"context"
@@ -9,41 +9,41 @@ import (
 )
 
 var (
-	Logic = cLogic{}
+	Web = cWeb{}
 )
 
-type cLogic struct {
-	g.Meta `name:"logic" brief:"genereate logic defined go file" eg:"{cLogicEg}" `
+type cWeb struct {
+	g.Meta `name:"web" brief:"genereate web defined go file" eg:"{cWebEg}" `
 }
 
 const (
-	cLogicEg     = `
-gf_gen logic
-gf_gen logic -a
-gf_gen logic -c
-gf_gen logic -cf
+	cWebEg     = `
+gf_gen web
+gf_gen web -a
+gf_gen web -c
+gf_gen web -cf
 `
 )
 
 func init() {
 	gtag.Sets(g.MapStrStr{
-		`cLogicEg`: cLogicEg,
+		`cWebEg`: cWebEg,
 	})
 }
 
-type cLogicInput struct {
-	g.Meta `name:"logic"  config:"gfcli.logic"`
+type cWebInput struct {
+	g.Meta `name:"web"  config:"gfcli.web"`
 	All    bool `name:"all" short:"a" brief:"upgrade both version and cli, auto fix codes" orphan:"true"`
 	Cli    bool `name:"cli" short:"c" brief:"also upgrade CLI tool" orphan:"true"`
 	Fix    bool `name:"fix" short:"f" brief:"auto fix codes(it only make sense if cli is to be upgraded)" orphan:"true"`
 }
 
-type cLogicOutput struct{}
+type cWebOutput struct{}
 
-func (c cLogic) Index(ctx context.Context, in cLogicInput) (out *cLogicOutput, err error) {
+func (c cWeb) Index(ctx context.Context, in cWebInput) (out *cWebOutput, err error) {
 	defer func() {
 		if err == nil {
-			mlog.Print(`Done! logic defined go file has been generated.`)
+			mlog.Print(`Done!`)
 		}
 	}()
 	return

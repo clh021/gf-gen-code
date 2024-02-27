@@ -9,10 +9,10 @@ import (
 
 const (
 	CGenCrudConfig = `gfcli.gen.crud`
-	CGenCrudUsage  = `gf gen crud [OPTION]`
+	CGenCrudUsage  = `gf_gen gen crud [OPTION]`
 	CGenCrudBrief  = `parse api definitions to generate controller/sdk go files`
 	CGenCrudEg     = `
-gf gen crud
+gf_gen gen crud
 `
 	CGenCrudBriefSrcFolder     = `source folder path to be parsed. default: api`
 	CGenCrudBriefDstFolder     = `destination folder path storing automatically generated go files. default: internal/controller`
@@ -76,8 +76,8 @@ func (c CGenCrud) Crud(ctx context.Context, in CGenCrudInput) (out *CGenCrudOutp
 	// 得出一个数据库中所有数据表结构和 `符合规则的注释`
 
 	// 1. 根据配置，连接一个 sqlite 数据库
-	// 要读取用户当前目录，识别是否是 gf 项目，符合条件才继续运行
-	// 读取 gf 项目的 hack 配置文件
+	// 要读取用户当前目录，识别是否是 gf_gen 项目，符合条件才继续运行
+	// 读取 gf_gen 项目的 hack 配置文件
 	// 2. 得到数据库中的所有表
 	// 3. 分析每一个表的表名，表注释
 	// 4. 分析每一个表的字段名，字段类型，字段注释
