@@ -12,9 +12,9 @@ import (
 	"strings"
 	"unicode"
 
-	"github.com/clh021/gf-gen-code/cmd/v1/mlog"
 	"github.com/gogf/gf/v2/container/gmap"
 	"github.com/gogf/gf/v2/database/gdb"
+	"github.com/gogf/gf/v2/os/glog"
 	"github.com/gogf/gf/v2/util/gutil"
 )
 
@@ -39,11 +39,11 @@ func (d *Driver) TableFields(ctx context.Context, table string, schema ...string
 	if err != nil {
 		return nil, err
 	}
-	mlog.Debug("==schemaRes==:")
-	mlog.Debug(schemaRes)
+	glog.Debug(ctx, "==schemaRes==:")
+	glog.Debug(ctx, schemaRes)
 	comments, _, _ := d.getComments(schemaRes.String())
-	mlog.Debug("==comments==:")
-	mlog.Debug(comments)
+	glog.Debug(ctx, "==comments==:")
+	glog.Debug(ctx, comments)
 
 	fields = make(map[string]*gdb.TableField)
 	for i, m := range result {
