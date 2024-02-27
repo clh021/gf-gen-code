@@ -25,3 +25,7 @@ buildv1:
 .PHONY: test
 test:
 	./tmp/gf_gen -c ./tmp/config.yaml
+
+.PHONY: h
+h:
+	./tmp/gf_gen -h
