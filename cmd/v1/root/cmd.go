@@ -4,11 +4,11 @@ import (
 	"context"
 	"log"
 
-	"github.com/clh021/gf-gen-code/cmd/v1/mlog"
 	"github.com/clh021/gf-gen-code/service/cfg"
 	"github.com/clh021/gf-gen-code/service/db"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/gfile"
+	"github.com/gogf/gf/v2/os/glog"
 	"github.com/gogf/gf/v2/util/gtag"
 )
 
@@ -50,12 +50,12 @@ type cOutput struct{}
 
 func (c cC) validInput(ctx context.Context, in cInput) (out *cOutput, err error) {
 	if in.Cfg == "" {
-		mlog.Fatal(`Please provide the required parameter: cfg. Use the '-c' or '--cfg' option to specify the config file.`)
+		glog.Fatal(ctx, `Please provide the required parameter: cfg. Use the '-c' or '--cfg' option to specify the config file.`)
 		return
 	}
 	pathValid := gfile.IsFile(in.Cfg)
 	if !pathValid {
-		mlog.Fatalf(`The specified config file "%s" does not exist. Please provide a valid path using the '-c' or '--cfg' option.`, in.Cfg)
+		glog.Fatalf(ctx, `The specified config file "%s" does not exist. Please provide a valid path using the '-c' or '--cfg' option.`, in.Cfg)
 		return
 	}
 	return
@@ -63,7 +63,7 @@ func (c cC) validInput(ctx context.Context, in cInput) (out *cOutput, err error)
 
 func (c cC) Index(ctx context.Context, in cInput) (out *cOutput, err error) {
 	if in.Debug {
-		mlog.SetDebug(true)
+		glog.SetDebug(true)
 	}
 
 	// Show Version
@@ -80,13 +80,14 @@ func (c cC) Index(ctx context.Context, in cInput) (out *cOutput, err error) {
 
 	cfg, err := cfg.GetByFilePath(ctx, in.Cfg)
 	if err != nil {
-		mlog.Fatal(err)
+		glog.Fatal(ctx, err)
 		return
 	}
 	link := cfg.MustGet(ctx, "gfcli.gen.dao.link").String()
 	table := cfg.MustGet(ctx, "gfcli.gen.dao.table").String()
-	mlog.Printf("link: %s", link)
-	mlog.Printf("table: %s", table)
+	glog.Printf(ctx, "link: %s", link)
+	glog.Printf(ctx, "link: %s", link)
+	glog.Printf(ctx, "table: %s", table)
 	// db.TestGetComment()
 	getTableStruct(link, table, ctx)
 	// gcmd.CommandFromCtx(ctx).Print()
@@ -96,11 +97,11 @@ func (c cC) Index(ctx context.Context, in cInput) (out *cOutput, err error) {
 func getTableStruct(link, table string, ctx context.Context) {
 	Db, err := db.New(link, table, ctx)
 	if err != nil {
-		mlog.Fatal(err)
+		glog.Fatal(ctx, err)
 	}
 	tables, err := Db.CheckMergeTables()
 	if err != nil {
-		mlog.Fatal(err)
+		glog.Fatal(ctx, err)
 	}
 	log.Println("MergeTables:")
 	g.Dump(tables)
@@ -116,7 +117,7 @@ func getTableStruct(link, table string, ctx context.Context) {
 	// 就这么干……
 	fields, err := Db.Fields(tables[0])
 	if err != nil {
-		mlog.Fatal(err)
+		glog.Fatal(ctx, err)
 	}
 	g.Dump(fields)
 }

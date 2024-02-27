@@ -3,8 +3,8 @@ package genapi
 import (
 	"context"
 
-	"github.com/clh021/gf-gen-code/cmd/v1/mlog"
 	"github.com/gogf/gf/v2/frame/g"
+	"github.com/gogf/gf/v2/os/glog"
 	"github.com/gogf/gf/v2/util/gtag"
 )
 
@@ -43,9 +43,9 @@ type cApiOutput struct{}
 func (c cApi) Index(ctx context.Context, in cApiInput) (out *cApiOutput, err error) {
 	defer func() {
 		if err == nil {
-			mlog.Print(`Done! api defined go file has been generated.`)
+			glog.Print(ctx, `Done! api defined go file has been generated.`)
 		}
 	}()
-	mlog.Print(in.All)
+	glog.Print(ctx, in.All)
 	return
 }

@@ -3,8 +3,8 @@ package genlogic
 import (
 	"context"
 
-	"github.com/clh021/gf-gen-code/cmd/v1/mlog"
 	"github.com/gogf/gf/v2/frame/g"
+	"github.com/gogf/gf/v2/os/glog"
 	"github.com/gogf/gf/v2/util/gtag"
 )
 
@@ -43,7 +43,7 @@ type cLogicOutput struct{}
 func (c cLogic) Index(ctx context.Context, in cLogicInput) (out *cLogicOutput, err error) {
 	defer func() {
 		if err == nil {
-			mlog.Print(`Done! logic defined go file has been generated.`)
+			glog.Print(ctx, `Done! logic defined go file has been generated.`)
 		}
 	}()
 	return

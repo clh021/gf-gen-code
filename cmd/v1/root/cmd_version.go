@@ -8,12 +8,12 @@ import (
 	"strings"
 	"time"
 
-	"github.com/clh021/gf-gen-code/cmd/v1/mlog"
 	"github.com/gogf/gf/v2"
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/gbuild"
 	"github.com/gogf/gf/v2/os/gfile"
+	"github.com/gogf/gf/v2/os/glog"
 	"github.com/gogf/gf/v2/os/gproc"
 	"github.com/gogf/gf/v2/text/gregex"
 	"github.com/gogf/gf/v2/text/gstr"
@@ -77,7 +77,7 @@ func (c cVersion) Index(ctx context.Context, in cVersionInput) (*cVersionOutput,
 	detailBuffer.appendLine(1, "Docs: https://goframe.org")
 	detailBuffer.appendLine(1, fmt.Sprintf("Now : %s", time.Now().Format(time.RFC3339)))
 
-	mlog.Print(detailBuffer.replaceAllIndent("  "))
+	glog.Print(ctx, detailBuffer.replaceAllIndent("  "))
 	return nil, nil
 }
 

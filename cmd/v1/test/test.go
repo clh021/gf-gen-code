@@ -3,8 +3,8 @@ package test
 import (
 	"context"
 
-	"github.com/clh021/gf-gen-code/cmd/v1/mlog"
 	"github.com/gogf/gf/v2/frame/g"
+	"github.com/gogf/gf/v2/os/glog"
 	"github.com/gogf/gf/v2/util/gtag"
 )
 
@@ -43,7 +43,7 @@ type cTestOutput struct{}
 func (c cTest) Index(ctx context.Context, in cTestInput) (out *cTestOutput, err error) {
 	defer func() {
 		if err == nil {
-			mlog.Print(`Done!`)
+			glog.Print(ctx, `Done!`)
 		}
 	}()
 	return
