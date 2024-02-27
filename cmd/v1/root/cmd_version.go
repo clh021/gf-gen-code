@@ -39,7 +39,7 @@ type cVersionOutput struct{}
 
 func (c cVersion) Index(ctx context.Context, in cVersionInput) (*cVersionOutput, error) {
 	detailBuffer := &detailBuffer{}
-	detailBuffer.WriteString(fmt.Sprintf("%s", gf.VERSION))
+	detailBuffer.WriteString(gf.VERSION)
 
 	detailBuffer.appendLine(0, "Welcome to GoFrame!")
 
