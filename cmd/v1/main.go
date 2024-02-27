@@ -5,6 +5,7 @@ import (
 	"log"
 
 	"github.com/clh021/gf-gen-code/cmd/v1/genapi"
+	"github.com/clh021/gf-gen-code/cmd/v1/genlogic"
 	"github.com/clh021/gf-gen-code/cmd/v1/root"
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/os/gcmd"
@@ -21,6 +22,7 @@ func GetCommand(ctx context.Context) (*Command, error) {
 	}
 	err = root.AddObject(
 		genapi.Api,
+		genlogic.Logic,
 	)
 	if err != nil {
 		return nil, err
