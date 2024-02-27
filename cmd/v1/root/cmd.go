@@ -1,4 +1,4 @@
-package gen
+package root
 
 import (
 	"context"
@@ -13,10 +13,10 @@ import (
 )
 
 var (
-	GEN = cGEN{}
+	C = cC{}
 )
 
-type cGEN struct {
+type cC struct {
 	g.Meta `name:"{cName}" ad:"{cAd}"`
 }
 
@@ -40,6 +40,7 @@ type cInput struct {
 	// 这里不要加太多校验规则，因为参数不通过时，无法友好的将错误提示给用户
 	// 也无法进入自主流程，所以不使用校验规则
 	g.Meta  `name:"{cName}"`
+	Yes     bool   `short:"y" name:"yes"         brief:"all yes for all command without prompt ask"  orphan:"true"`
 	Version bool   `short:"v" name:"version"     brief:"Display the program's version information"   orphan:"true"`
 	Debug   bool   `short:"d" name:"debug"       brief:"Display debug information during running"    orphan:"true"`
 	Cfg     string `short:"c" name:"cfg"         brief:"Config file path"                            d:"./hack/config.yaml"`
@@ -47,7 +48,7 @@ type cInput struct {
 
 type cOutput struct{}
 
-func (c cGEN) validInput(ctx context.Context, in cInput) (out *cOutput, err error) {
+func (c cC) validInput(ctx context.Context, in cInput) (out *cOutput, err error) {
 	if in.Cfg == "" {
 		mlog.Fatal(`Please provide the required parameter: cfg. Use the '-c' or '--cfg' option to specify the config file.`)
 		return
@@ -60,7 +61,7 @@ func (c cGEN) validInput(ctx context.Context, in cInput) (out *cOutput, err erro
 	return
 }
 
-func (c cGEN) Index(ctx context.Context, in cInput) (out *cOutput, err error) {
+func (c cC) Index(ctx context.Context, in cInput) (out *cOutput, err error) {
 	if in.Debug {
 		mlog.SetDebug(true)
 	}
@@ -82,8 +83,8 @@ func (c cGEN) Index(ctx context.Context, in cInput) (out *cOutput, err error) {
 		mlog.Fatal(err)
 		return
 	}
-	link := cfg.MustGet(ctx,"gfcli.gen.dao.link").String()
-	table := cfg.MustGet(ctx,"gfcli.gen.dao.table").String()
+	link := cfg.MustGet(ctx, "gfcli.gen.dao.link").String()
+	table := cfg.MustGet(ctx, "gfcli.gen.dao.table").String()
 	log.Printf("link: %s", link)
 	log.Printf("table: %s", table)
 	// db.TestGetComment()

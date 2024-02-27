@@ -4,7 +4,8 @@ import (
 	"context"
 	"log"
 
-	"github.com/clh021/gf-gen-code/cmd/v1/gen"
+	"github.com/clh021/gf-gen-code/cmd/v1/genapi"
+	"github.com/clh021/gf-gen-code/cmd/v1/root"
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/os/gcmd"
 	"github.com/gogf/gf/v2/os/gctx"
@@ -14,14 +15,16 @@ type Command struct {
 }
 
 func GetCommand(ctx context.Context) (*Command, error) {
-	root, err := gcmd.NewFromObject(gen.GEN)
+	root, err := gcmd.NewFromObject(root.C)
 	if err != nil {
 		panic(err)
 	}
-	// err = root.AddObject()
-	// if err != nil {
-	// 	return nil, err
-	// }
+	err = root.AddObject(
+		genapi.Api,
+	)
+	if err != nil {
+		return nil, err
+	}
 	command := &Command{
 		root,
 	}
