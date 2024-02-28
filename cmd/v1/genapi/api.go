@@ -18,6 +18,8 @@ type cApi struct {
 	g.Meta `name:"api" brief:"genereate api defined go file" eg:"{cApiEg}" `
 }
 
+//go:generate ./update.depend.sh
+
 const (
 	cApiEg = `
 gf_gen api
