@@ -17,7 +17,7 @@ type cWeb struct {
 }
 
 const (
-	cWebEg     = `
+	cWebEg = `
 gf_gen web
 gf_gen web -a
 gf_gen web -c

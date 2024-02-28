@@ -17,13 +17,15 @@ type cTest struct {
 }
 
 const (
-	cTestEg     = `
+	cTestEg = `
 gf_gen test
 gf_gen test -a
 gf_gen test -c
 gf_gen test -cf
 `
 )
+
+// go:generate pwd # 没一个 go:generate 都是相对于当前文件所属目录运行的
 
 func init() {
 	gtag.Sets(g.MapStrStr{

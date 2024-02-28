@@ -9,19 +9,19 @@ import (
 )
 
 type DB struct {
-	Clink string
+	Clink  string
 	Ctable string
-	db   gdb.DB
-	ctx context.Context
+	db     gdb.DB
+	ctx    context.Context
 }
 
 func New(link, table string, ctx context.Context) (db *DB, err error) {
 	_db, err := getDB(link)
 	db = &DB{
-		Clink: link,
+		Clink:  link,
 		Ctable: table,
-		db: _db,
-		ctx: ctx,
+		db:     _db,
+		ctx:    ctx,
 	}
 	return
 }

@@ -17,7 +17,7 @@ type cLogic struct {
 }
 
 const (
-	cLogicEg     = `
+	cLogicEg = `
 gf_gen logic
 gf_gen logic -a
 gf_gen logic -c

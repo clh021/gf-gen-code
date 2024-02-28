@@ -2,7 +2,9 @@ package genapi
 
 import (
 	"context"
+	"log"
 
+	"github.com/clh021/gf-gen-code/service/db"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/glog"
 	"github.com/gogf/gf/v2/util/gtag"
@@ -17,7 +19,7 @@ type cApi struct {
 }
 
 const (
-	cApiEg     = `
+	cApiEg = `
 gf_gen api
 gf_gen api -a
 gf_gen api -c
@@ -47,5 +49,45 @@ func (c cApi) Index(ctx context.Context, in cApiInput) (out *cApiOutput, err err
 		}
 	}()
 	glog.Print(ctx, in.All)
+	// cfg, err := cfg.GetByFilePath(ctx, in.Cfg)
+	// if err != nil {
+	// 	glog.Fatal(ctx, err)
+	// 	return
+	// }
+	// link := cfg.MustGet(ctx, "gfcli.gen.dao.link").String()
+	// table := cfg.MustGet(ctx, "gfcli.gen.dao.table").String()
+	// glog.Printf(ctx, "link: %s", link)
+	// glog.Printf(ctx, "link: %s", link)
+	// glog.Printf(ctx, "table: %s", table)
+	// // db.TestGetComment()
+	// getTableStruct(link, table, ctx)
 	return
+}
+
+func getTableStruct(link, table string, ctx context.Context) {
+	Db, err := db.New(link, table, ctx)
+	if err != nil {
+		glog.Fatal(ctx, err)
+	}
+	tables, err := Db.CheckMergeTables()
+	if err != nil {
+		glog.Fatal(ctx, err)
+	}
+	log.Println("MergeTables:")
+	g.Dump(tables)
+	// 进行时，发现 gf_gen 是会处理表注释的，只是 sqlite 没有像 mysql 一样直接支持。
+	// 按照本项目的思路
+	// 修改 sqlite 对应的代码文件
+	// contrib/drivers/sqlite/sqlite_table_fields.go
+	// contrib/drivers/sqlite/sqlite_z_unit_core_test.go
+	// 像 mysql 对应的代码文件一样即可
+	// contrib/drivers/mysql/mysql_table_fields.go
+	// contrib/drivers/mysql/mysql_z_unit_core_test.go
+	// 尝试直接修改这个部分，也许还能合并进去，及时不能合并进去，也可以先自己用。
+	// 就这么干……
+	fields, err := Db.Fields(tables[0])
+	if err != nil {
+		glog.Fatal(ctx, err)
+	}
+	g.Dump(fields)
 }
