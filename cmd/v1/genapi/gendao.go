@@ -26,17 +26,17 @@ import (
 )
 
 const (
-	CGenDaoConfig = `gfcli.gen.dao`
-	CGenDaoUsage  = `gf gen dao [OPTION]`
-	CGenDaoBrief  = `automatically generate go files for dao/do/entity`
-	CGenDaoEg     = `
-gf gen dao
-gf gen dao -l "mysql:root:12345678@tcp(127.0.0.1:3306)/test"
-gf gen dao -p ./model -g user-center -t user,user_detail,user_login
-gf gen dao -r user_
+	CGenApiConfig = `gfcli.gen.dao`
+	CGenApiUsage  = `gf_gen api [OPTION]`
+	CGenApiBrief  = `automatically generate go files for dao/do/entity`
+	CGenApiEg     = `
+gf_gen api
+gf_gen api -l "mysql:root:12345678@tcp(127.0.0.1:3306)/test"
+gf_gen api -p ./model -g user-center -t user,user_detail,user_login
+gf_gen api -r user_
 `
 
-	CGenDaoAd = `
+	CGenApiAd = `
 CONFIGURATION SUPPORT
     Options are also supported by configuration file.
     It's suggested using configuration file instead of command line arguments making producing.
@@ -58,33 +58,33 @@ CONFIGURATION SUPPORT
 			numeric:
 			  type: string
 `
-	CGenDaoBriefPath              = `directory path for generated files`
-	CGenDaoBriefLink              = `database configuration, the same as the ORM configuration of GoFrame`
-	CGenDaoBriefTables            = `generate models only for given tables, multiple table names separated with ','`
-	CGenDaoBriefTablesEx          = `generate models excluding given tables, multiple table names separated with ','`
-	CGenDaoBriefPrefix            = `add prefix for all table of specified link/database tables`
-	CGenDaoBriefRemovePrefix      = `remove specified prefix of the table, multiple prefix separated with ','`
-	CGenDaoBriefRemoveFieldPrefix = `remove specified prefix of the field, multiple prefix separated with ','`
-	CGenDaoBriefStdTime           = `use time.Time from stdlib instead of gtime.Time for generated time/date fields of tables`
-	CGenDaoBriefWithTime          = `add created time for auto produced go files`
-	CGenDaoBriefGJsonSupport      = `use gJsonSupport to use *gjson.Json instead of string for generated json fields of tables`
-	CGenDaoBriefImportPrefix      = `custom import prefix for generated go files`
-	CGenDaoBriefDaoPath           = `directory path for storing generated dao files under path`
-	CGenDaoBriefDoPath            = `directory path for storing generated do files under path`
-	CGenDaoBriefEntityPath        = `directory path for storing generated entity files under path`
-	CGenDaoBriefOverwriteDao      = `overwrite all dao files both inside/outside internal folder`
-	CGenDaoBriefModelFile         = `custom file name for storing generated model content`
-	CGenDaoBriefModelFileForDao   = `custom file name generating model for DAO operations like Where/Data. It's empty in default`
-	CGenDaoBriefDescriptionTag    = `add comment to description tag for each field`
-	CGenDaoBriefNoJsonTag         = `no json tag will be added for each field`
-	CGenDaoBriefNoModelComment    = `no model comment will be added for each field`
-	CGenDaoBriefClear             = `delete all generated go files that do not exist in database`
-	CGenDaoBriefTypeMapping       = `custom local type mapping for generated struct attributes relevant to fields of table`
-	CGenDaoBriefGroup             = `
+	CGenApiBriefPath              = `directory path for generated files`
+	CGenApiBriefLink              = `database configuration, the same as the ORM configuration of GoFrame`
+	CGenApiBriefTables            = `generate models only for given tables, multiple table names separated with ','`
+	CGenApiBriefTablesEx          = `generate models excluding given tables, multiple table names separated with ','`
+	CGenApiBriefPrefix            = `add prefix for all table of specified link/database tables`
+	CGenApiBriefRemovePrefix      = `remove specified prefix of the table, multiple prefix separated with ','`
+	CGenApiBriefRemoveFieldPrefix = `remove specified prefix of the field, multiple prefix separated with ','`
+	CGenApiBriefStdTime           = `use time.Time from stdlib instead of gtime.Time for generated time/date fields of tables`
+	CGenApiBriefWithTime          = `add created time for auto produced go files`
+	CGenApiBriefGJsonSupport      = `use gJsonSupport to use *gjson.Json instead of string for generated json fields of tables`
+	CGenApiBriefImportPrefix      = `custom import prefix for generated go files`
+	CGenApiBriefDaoPath           = `directory path for storing generated dao files under path`
+	CGenApiBriefDoPath            = `directory path for storing generated do files under path`
+	CGenApiBriefEntityPath        = `directory path for storing generated entity files under path`
+	CGenApiBriefOverwriteDao      = `overwrite all dao files both inside/outside internal folder`
+	CGenApiBriefModelFile         = `custom file name for storing generated model content`
+	CGenApiBriefModelFileForDao   = `custom file name generating model for DAO operations like Where/Data. It's empty in default`
+	CGenApiBriefDescriptionTag    = `add comment to description tag for each field`
+	CGenApiBriefNoJsonTag         = `no json tag will be added for each field`
+	CGenApiBriefNoModelComment    = `no model comment will be added for each field`
+	CGenApiBriefClear             = `delete all generated go files that do not exist in database`
+	CGenApiBriefTypeMapping       = `custom local type mapping for generated struct attributes relevant to fields of table`
+	CGenApiBriefGroup             = `
 specifying the configuration group name of database for generated ORM instance,
 it's not necessary and the default value is "default"
 `
-	CGenDaoBriefJsonCase = `
+	CGenApiBriefJsonCase = `
 generated json tag case for model struct, cases are as follows:
 | Case            | Example            |
 |---------------- |--------------------|
@@ -96,10 +96,10 @@ generated json tag case for model struct, cases are as follows:
 | Kebab           | any-kind-of-string |
 | KebabScreaming  | ANY-KIND-OF-STRING |
 `
-	CGenDaoBriefTplDaoIndexPath    = `template file path for dao index file`
-	CGenDaoBriefTplDaoInternalPath = `template file path for dao internal file`
-	CGenDaoBriefTplDaoDoPathPath   = `template file path for dao do file`
-	CGenDaoBriefTplDaoEntityPath   = `template file path for dao entity file`
+	CGenApiBriefTplDaoIndexPath    = `template file path for dao index file`
+	CGenApiBriefTplDaoInternalPath = `template file path for dao internal file`
+	CGenApiBriefTplDaoDoPathPath   = `template file path for dao do file`
+	CGenApiBriefTplDaoEntityPath   = `template file path for dao entity file`
 
 	tplVarTableName               = `{TplTableName}`
 	tplVarTableNameCamelCase      = `{TplTableNameCamelCase}`
@@ -134,78 +134,78 @@ var (
 
 func init() {
 	gtag.Sets(g.MapStrStr{
-		`CGenDaoConfig`:                  CGenDaoConfig,
-		`CGenDaoUsage`:                   CGenDaoUsage,
-		`CGenDaoBrief`:                   CGenDaoBrief,
-		`CGenDaoEg`:                      CGenDaoEg,
-		`CGenDaoAd`:                      CGenDaoAd,
-		`CGenDaoBriefPath`:               CGenDaoBriefPath,
-		`CGenDaoBriefLink`:               CGenDaoBriefLink,
-		`CGenDaoBriefTables`:             CGenDaoBriefTables,
-		`CGenDaoBriefTablesEx`:           CGenDaoBriefTablesEx,
-		`CGenDaoBriefPrefix`:             CGenDaoBriefPrefix,
-		`CGenDaoBriefRemovePrefix`:       CGenDaoBriefRemovePrefix,
-		`CGenDaoBriefRemoveFieldPrefix`:  CGenDaoBriefRemoveFieldPrefix,
-		`CGenDaoBriefStdTime`:            CGenDaoBriefStdTime,
-		`CGenDaoBriefWithTime`:           CGenDaoBriefWithTime,
-		`CGenDaoBriefDaoPath`:            CGenDaoBriefDaoPath,
-		`CGenDaoBriefDoPath`:             CGenDaoBriefDoPath,
-		`CGenDaoBriefEntityPath`:         CGenDaoBriefEntityPath,
-		`CGenDaoBriefGJsonSupport`:       CGenDaoBriefGJsonSupport,
-		`CGenDaoBriefImportPrefix`:       CGenDaoBriefImportPrefix,
-		`CGenDaoBriefOverwriteDao`:       CGenDaoBriefOverwriteDao,
-		`CGenDaoBriefModelFile`:          CGenDaoBriefModelFile,
-		`CGenDaoBriefModelFileForDao`:    CGenDaoBriefModelFileForDao,
-		`CGenDaoBriefDescriptionTag`:     CGenDaoBriefDescriptionTag,
-		`CGenDaoBriefNoJsonTag`:          CGenDaoBriefNoJsonTag,
-		`CGenDaoBriefNoModelComment`:     CGenDaoBriefNoModelComment,
-		`CGenDaoBriefClear`:              CGenDaoBriefClear,
-		`CGenDaoBriefTypeMapping`:        CGenDaoBriefTypeMapping,
-		`CGenDaoBriefGroup`:              CGenDaoBriefGroup,
-		`CGenDaoBriefJsonCase`:           CGenDaoBriefJsonCase,
-		`CGenDaoBriefTplDaoIndexPath`:    CGenDaoBriefTplDaoIndexPath,
-		`CGenDaoBriefTplDaoInternalPath`: CGenDaoBriefTplDaoInternalPath,
-		`CGenDaoBriefTplDaoDoPathPath`:   CGenDaoBriefTplDaoDoPathPath,
-		`CGenDaoBriefTplDaoEntityPath`:   CGenDaoBriefTplDaoEntityPath,
+		`CGenApiConfig`:                  CGenApiConfig,
+		`CGenApiUsage`:                   CGenApiUsage,
+		`CGenApiBrief`:                   CGenApiBrief,
+		`CGenApiEg`:                      CGenApiEg,
+		`CGenApiAd`:                      CGenApiAd,
+		`CGenApiBriefPath`:               CGenApiBriefPath,
+		`CGenApiBriefLink`:               CGenApiBriefLink,
+		`CGenApiBriefTables`:             CGenApiBriefTables,
+		`CGenApiBriefTablesEx`:           CGenApiBriefTablesEx,
+		`CGenApiBriefPrefix`:             CGenApiBriefPrefix,
+		`CGenApiBriefRemovePrefix`:       CGenApiBriefRemovePrefix,
+		`CGenApiBriefRemoveFieldPrefix`:  CGenApiBriefRemoveFieldPrefix,
+		`CGenApiBriefStdTime`:            CGenApiBriefStdTime,
+		`CGenApiBriefWithTime`:           CGenApiBriefWithTime,
+		`CGenApiBriefDaoPath`:            CGenApiBriefDaoPath,
+		`CGenApiBriefDoPath`:             CGenApiBriefDoPath,
+		`CGenApiBriefEntityPath`:         CGenApiBriefEntityPath,
+		`CGenApiBriefGJsonSupport`:       CGenApiBriefGJsonSupport,
+		`CGenApiBriefImportPrefix`:       CGenApiBriefImportPrefix,
+		`CGenApiBriefOverwriteDao`:       CGenApiBriefOverwriteDao,
+		`CGenApiBriefModelFile`:          CGenApiBriefModelFile,
+		`CGenApiBriefModelFileForDao`:    CGenApiBriefModelFileForDao,
+		`CGenApiBriefDescriptionTag`:     CGenApiBriefDescriptionTag,
+		`CGenApiBriefNoJsonTag`:          CGenApiBriefNoJsonTag,
+		`CGenApiBriefNoModelComment`:     CGenApiBriefNoModelComment,
+		`CGenApiBriefClear`:              CGenApiBriefClear,
+		`CGenApiBriefTypeMapping`:        CGenApiBriefTypeMapping,
+		`CGenApiBriefGroup`:              CGenApiBriefGroup,
+		`CGenApiBriefJsonCase`:           CGenApiBriefJsonCase,
+		`CGenApiBriefTplDaoIndexPath`:    CGenApiBriefTplDaoIndexPath,
+		`CGenApiBriefTplDaoInternalPath`: CGenApiBriefTplDaoInternalPath,
+		`CGenApiBriefTplDaoDoPathPath`:   CGenApiBriefTplDaoDoPathPath,
+		`CGenApiBriefTplDaoEntityPath`:   CGenApiBriefTplDaoEntityPath,
 	})
 }
 
 type (
-	CGenDao      struct{}
-	CGenDaoInput struct {
-		g.Meta             `name:"dao" config:"{CGenDaoConfig}" usage:"{CGenDaoUsage}" brief:"{CGenDaoBrief}" eg:"{CGenDaoEg}" ad:"{CGenDaoAd}"`
-		Path               string `name:"path"                short:"p"  brief:"{CGenDaoBriefPath}" d:"internal"`
-		Link               string `name:"link"                short:"l"  brief:"{CGenDaoBriefLink}"`
-		Tables             string `name:"tables"              short:"t"  brief:"{CGenDaoBriefTables}"`
-		TablesEx           string `name:"tablesEx"            short:"x"  brief:"{CGenDaoBriefTablesEx}"`
-		Group              string `name:"group"               short:"g"  brief:"{CGenDaoBriefGroup}" d:"default"`
-		Prefix             string `name:"prefix"              short:"f"  brief:"{CGenDaoBriefPrefix}"`
-		RemovePrefix       string `name:"removePrefix"        short:"r"  brief:"{CGenDaoBriefRemovePrefix}"`
-		RemoveFieldPrefix  string `name:"removeFieldPrefix"   short:"rf" brief:"{CGenDaoBriefRemoveFieldPrefix}"`
-		JsonCase           string `name:"jsonCase"            short:"j"  brief:"{CGenDaoBriefJsonCase}" d:"CamelLower"`
-		ImportPrefix       string `name:"importPrefix"        short:"i"  brief:"{CGenDaoBriefImportPrefix}"`
-		DaoPath            string `name:"daoPath"             short:"d"  brief:"{CGenDaoBriefDaoPath}" d:"dao"`
-		DoPath             string `name:"doPath"              short:"o"  brief:"{CGenDaoBriefDoPath}" d:"model/do"`
-		EntityPath         string `name:"entityPath"          short:"e"  brief:"{CGenDaoBriefEntityPath}" d:"model/entity"`
-		TplDaoIndexPath    string `name:"tplDaoIndexPath"     short:"t1" brief:"{CGenDaoBriefTplDaoIndexPath}"`
-		TplDaoInternalPath string `name:"tplDaoInternalPath"  short:"t2" brief:"{CGenDaoBriefTplDaoInternalPath}"`
-		TplDaoDoPath       string `name:"tplDaoDoPath"        short:"t3" brief:"{CGenDaoBriefTplDaoDoPathPath}"`
-		TplDaoEntityPath   string `name:"tplDaoEntityPath"    short:"t4" brief:"{CGenDaoBriefTplDaoEntityPath}"`
-		StdTime            bool   `name:"stdTime"             short:"s"  brief:"{CGenDaoBriefStdTime}" orphan:"true"`
-		WithTime           bool   `name:"withTime"            short:"w"  brief:"{CGenDaoBriefWithTime}" orphan:"true"`
-		GJsonSupport       bool   `name:"gJsonSupport"        short:"n"  brief:"{CGenDaoBriefGJsonSupport}" orphan:"true"`
-		OverwriteDao       bool   `name:"overwriteDao"        short:"v"  brief:"{CGenDaoBriefOverwriteDao}" orphan:"true"`
-		DescriptionTag     bool   `name:"descriptionTag"      short:"c"  brief:"{CGenDaoBriefDescriptionTag}" orphan:"true"`
-		NoJsonTag          bool   `name:"noJsonTag"           short:"k"  brief:"{CGenDaoBriefNoJsonTag}" orphan:"true"`
-		NoModelComment     bool   `name:"noModelComment"      short:"m"  brief:"{CGenDaoBriefNoModelComment}" orphan:"true"`
-		Clear              bool   `name:"clear"               short:"a"  brief:"{CGenDaoBriefClear}" orphan:"true"`
+	CGenApi      struct{}
+	CGenApiInput struct {
+		g.Meta             `name:"dao" config:"{CGenApiConfig}" usage:"{CGenApiUsage}" brief:"{CGenApiBrief}" eg:"{CGenApiEg}" ad:"{CGenApiAd}"`
+		Path               string `name:"path"                short:"p"  brief:"{CGenApiBriefPath}" d:"internal"`
+		Link               string `name:"link"                short:"l"  brief:"{CGenApiBriefLink}"`
+		Tables             string `name:"tables"              short:"t"  brief:"{CGenApiBriefTables}"`
+		TablesEx           string `name:"tablesEx"            short:"x"  brief:"{CGenApiBriefTablesEx}"`
+		Group              string `name:"group"               short:"g"  brief:"{CGenApiBriefGroup}" d:"default"`
+		Prefix             string `name:"prefix"              short:"f"  brief:"{CGenApiBriefPrefix}"`
+		RemovePrefix       string `name:"removePrefix"        short:"r"  brief:"{CGenApiBriefRemovePrefix}"`
+		RemoveFieldPrefix  string `name:"removeFieldPrefix"   short:"rf" brief:"{CGenApiBriefRemoveFieldPrefix}"`
+		JsonCase           string `name:"jsonCase"            short:"j"  brief:"{CGenApiBriefJsonCase}" d:"CamelLower"`
+		ImportPrefix       string `name:"importPrefix"        short:"i"  brief:"{CGenApiBriefImportPrefix}"`
+		DaoPath            string `name:"daoPath"             short:"d"  brief:"{CGenApiBriefDaoPath}" d:"dao"`
+		DoPath             string `name:"doPath"              short:"o"  brief:"{CGenApiBriefDoPath}" d:"model/do"`
+		EntityPath         string `name:"entityPath"          short:"e"  brief:"{CGenApiBriefEntityPath}" d:"model/entity"`
+		TplDaoIndexPath    string `name:"tplDaoIndexPath"     short:"t1" brief:"{CGenApiBriefTplDaoIndexPath}"`
+		TplDaoInternalPath string `name:"tplDaoInternalPath"  short:"t2" brief:"{CGenApiBriefTplDaoInternalPath}"`
+		TplDaoDoPath       string `name:"tplDaoDoPath"        short:"t3" brief:"{CGenApiBriefTplDaoDoPathPath}"`
+		TplDaoEntityPath   string `name:"tplDaoEntityPath"    short:"t4" brief:"{CGenApiBriefTplDaoEntityPath}"`
+		StdTime            bool   `name:"stdTime"             short:"s"  brief:"{CGenApiBriefStdTime}" orphan:"true"`
+		WithTime           bool   `name:"withTime"            short:"w"  brief:"{CGenApiBriefWithTime}" orphan:"true"`
+		GJsonSupport       bool   `name:"gJsonSupport"        short:"n"  brief:"{CGenApiBriefGJsonSupport}" orphan:"true"`
+		OverwriteDao       bool   `name:"overwriteDao"        short:"v"  brief:"{CGenApiBriefOverwriteDao}" orphan:"true"`
+		DescriptionTag     bool   `name:"descriptionTag"      short:"c"  brief:"{CGenApiBriefDescriptionTag}" orphan:"true"`
+		NoJsonTag          bool   `name:"noJsonTag"           short:"k"  brief:"{CGenApiBriefNoJsonTag}" orphan:"true"`
+		NoModelComment     bool   `name:"noModelComment"      short:"m"  brief:"{CGenApiBriefNoModelComment}" orphan:"true"`
+		Clear              bool   `name:"clear"               short:"a"  brief:"{CGenApiBriefClear}" orphan:"true"`
 
-		TypeMapping map[DBFieldTypeName]CustomAttributeType `name:"typeMapping" short:"y" brief:"{CGenDaoBriefTypeMapping}" orphan:"true"`
+		TypeMapping map[DBFieldTypeName]CustomAttributeType `name:"typeMapping" short:"y" brief:"{CGenApiBriefTypeMapping}" orphan:"true"`
 	}
-	CGenDaoOutput struct{}
+	CGenApiOutput struct{}
 
-	CGenDaoInternalInput struct {
-		CGenDaoInput
+	CGenApiInternalInput struct {
+		CGenApiInput
 		DB            gdb.DB
 		TableNames    []string
 		NewTableNames []string
@@ -218,9 +218,9 @@ type (
 	}
 )
 
-func (c CGenDao) Dao(ctx context.Context, in CGenDaoInput) (out *CGenDaoOutput, err error) {
+func (c CGenApi) Dao(ctx context.Context, in CGenApiInput) (out *CGenApiOutput, err error) {
 	if g.Cfg().Available(ctx) {
-		v := g.Cfg().MustGet(ctx, CGenDaoConfig)
+		v := g.Cfg().MustGet(ctx, CGenApiConfig)
 		if v.IsSlice() {
 			for i := 0; i < len(v.Interfaces()); i++ {
 				doGenDaoForArray(ctx, i, in)
@@ -236,7 +236,7 @@ func (c CGenDao) Dao(ctx context.Context, in CGenDaoInput) (out *CGenDaoOutput, 
 }
 
 // doGenDaoForArray implements the "gen dao" command for configuration array.
-func doGenDaoForArray(ctx context.Context, index int, in CGenDaoInput) {
+func doGenDaoForArray(ctx context.Context, index int, in CGenApiInput) {
 	var (
 		err error
 		db  gdb.DB
@@ -244,10 +244,10 @@ func doGenDaoForArray(ctx context.Context, index int, in CGenDaoInput) {
 	if index >= 0 {
 		err = g.Cfg().MustGet(
 			ctx,
-			fmt.Sprintf(`%s.%d`, CGenDaoConfig, index),
+			fmt.Sprintf(`%s.%d`, CGenApiConfig, index),
 		).Scan(&in)
 		if err != nil {
-			mlog.Fatalf(`invalid configuration of "%s": %+v`, CGenDaoConfig, err)
+			mlog.Fatalf(`invalid configuration of "%s": %+v`, CGenApiConfig, err)
 		}
 	}
 	if dirRealPath := gfile.RealPath(in.Path); dirRealPath == "" {
@@ -314,22 +314,22 @@ func doGenDaoForArray(ctx context.Context, index int, in CGenDaoInput) {
 	// Start of temporarily commented section
 	//
 	//	// Dao: index and internal.
-	//	generateDao(ctx, CGenDaoInternalInput{
-	//		CGenDaoInput:  in,
+	//	generateDao(ctx, CGenApiInternalInput{
+	//		CGenApiInput:  in,
 	//		DB:            db,
 	//		TableNames:    tableNames,
 	//		NewTableNames: newTableNames,
 	//	})
 	//	// Do.
-	//	generateDo(ctx, CGenDaoInternalInput{
-	//		CGenDaoInput:  in,
+	//	generateDo(ctx, CGenApiInternalInput{
+	//		CGenApiInput:  in,
 	//		DB:            db,
 	//		TableNames:    tableNames,
 	//		NewTableNames: newTableNames,
 	//	})
 	//	// Entity.
-	//	generateEntity(ctx, CGenDaoInternalInput{
-	//		CGenDaoInput:  in,
+	//	generateEntity(ctx, CGenApiInternalInput{
+	//		CGenApiInput:  in,
 	//		DB:            db,
 	//		TableNames:    tableNames,
 	//		NewTableNames: newTableNames,
@@ -390,7 +390,7 @@ func getImportPartContent(ctx context.Context, source string, isDo bool, appendI
 	return packageImportsStr
 }
 
-func replaceDefaultVar(in CGenDaoInternalInput, origin string) string {
+func replaceDefaultVar(in CGenApiInternalInput, origin string) string {
 	var tplCreatedAtDatetimeStr string
 	var tplDatetimeStr string = createdAt.String()
 	if in.WithTime {

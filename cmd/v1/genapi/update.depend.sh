@@ -9,6 +9,7 @@ wget -c https://gitee.com/johng/gf/raw/master/cmd/gf/internal/cmd/gendao/gendao.
 # 替换 package 名称
 sed -i'' 's/package gendao/package genapi/' gendao.go
 sed -i'' 's/gf gen dao/gf_gen api/' gendao.go
+sed -i'' 's/CGenDao/CGenApi/g' gendao.go
 
 # 注释掉 gendao.go 中 315行到334行
 start_line=315
