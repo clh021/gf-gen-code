@@ -25,6 +25,7 @@ func GetCommand(ctx context.Context) (*Command, error) {
 	}
 	if err = root.AddObject(
 		genapi.Api,
+		genapi.GenApi,
 		genlogic.Logic,
 		genweb.Web,
 		test.Test,

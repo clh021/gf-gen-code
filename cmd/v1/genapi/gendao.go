@@ -115,6 +115,7 @@ generated json tag case for model struct, cases are as follows:
 )
 
 var (
+	GenApi             = CGenApi{}
 	createdAt          = gtime.Now()
 	defaultTypeMapping = map[DBFieldTypeName]CustomAttributeType{
 		"decimal": {
@@ -171,7 +172,9 @@ func init() {
 }
 
 type (
-	CGenApi      struct{}
+	CGenApi struct {
+		g.Meta `name:"api" brief:"genereate api defined go file" eg:"{CGenApiEg}" `
+	}
 	CGenApiInput struct {
 		g.Meta             `name:"dao" config:"{CGenApiConfig}" usage:"{CGenApiUsage}" brief:"{CGenApiBrief}" eg:"{CGenApiEg}" ad:"{CGenApiAd}"`
 		Path               string `name:"path"                short:"p"  brief:"{CGenApiBriefPath}" d:"internal"`
