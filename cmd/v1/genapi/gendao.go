@@ -176,7 +176,7 @@ type (
 		g.Meta `name:"api" brief:"genereate api defined go file" eg:"{CGenApiEg}" `
 	}
 	CGenApiInput struct {
-		g.Meta             `name:"dao" config:"{CGenApiConfig}" usage:"{CGenApiUsage}" brief:"{CGenApiBrief}" eg:"{CGenApiEg}" ad:"{CGenApiAd}"`
+		g.Meta             `name:"api" config:"{CGenApiConfig}" usage:"{CGenApiUsage}" brief:"{CGenApiBrief}" eg:"{CGenApiEg}" ad:"{CGenApiAd}"`
 		Path               string `name:"path"                short:"p"  brief:"{CGenApiBriefPath}" d:"internal"`
 		Link               string `name:"link"                short:"l"  brief:"{CGenApiBriefLink}"`
 		Tables             string `name:"tables"              short:"t"  brief:"{CGenApiBriefTables}"`

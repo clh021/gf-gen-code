@@ -4,6 +4,8 @@ import (
 	"context"
 	"log"
 
+	_ "github.com/clh021/gf-gen-code/service/tpl"
+
 	"github.com/clh021/gf-gen-code/cmd/v1/genapi"
 	"github.com/clh021/gf-gen-code/cmd/v1/genlogic"
 	"github.com/clh021/gf-gen-code/cmd/v1/genweb"

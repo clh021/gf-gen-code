@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # leehom Chen clh021@gmail.com
 
-set -x
+# set -x
 
 # 环境准备
 script_dir="$(dirname "$0")"
@@ -17,8 +17,6 @@ if [ ! -d "$test_proj_name" ]; then
 fi
 
 cd "$test_proj_name" || exit 1
-
-ls -lah
 
 # ./../tmp/gf_gen -h
 ./../tmp/gf_gen api1 api

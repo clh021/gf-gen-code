@@ -16,6 +16,8 @@ buildStr=${gitTime}.${gitCID}.${gitTag}.${gitCount}
 # CGO_ENABLED=1 GOARCH=amd64 GOOS=linux go build -ldflags "-X main.build=${buildStr}" -o tmp/app cmd/main.go
 .PHONY: build
 build:
+	@rm -r service/tpl/build_pack_data.go
+	gf pack service/tpl/gen_templates service/tpl/build_pack_data.go -p gen_templates
 	@docker run -it --rm -v `pwd`:/app -w /app -e CGO_ENABLED=1 -u ${UID}:${GID} leehom/detect:centos7.go1.19 go build -mod vendor -ldflags "-s -w -X github.com/clh021/gf-gen-code/cmd/v1/cmd.BuiltGit=${gitCID} -X github.com/clh021/gf-gen-code/cmd/v1/cmd.BuiltTime=${gitTime}" -o tmp/gf_gen cmd/v1/*.go
 #	cd tmp/; zip -r -q "gf_gen.${fileTime}.zip" gf_gen
 
@@ -34,7 +36,7 @@ preproj:
 
 .PHONY: test
 test:
-	./tmp/gf_gen -c ./tmp/config.yaml
+	@./scripts/test.sh
 
 .PHONY: h
 h:

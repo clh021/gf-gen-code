@@ -3,9 +3,12 @@ package genapi
 import (
 	"context"
 	"log"
+	"path/filepath"
 
 	"github.com/clh021/gf-gen-code/service/db"
+	"github.com/clh021/gf-gen-code/service/tpl"
 	"github.com/gogf/gf/v2/frame/g"
+	"github.com/gogf/gf/v2/os/gfile"
 	"github.com/gogf/gf/v2/os/glog"
 	"github.com/gogf/gf/v2/util/gtag"
 )
@@ -51,6 +54,33 @@ func (c cApi) Index(ctx context.Context, in cApiInput) (out *cApiOutput, err err
 		}
 	}()
 	glog.Print(ctx, in.All)
+
+	dstModuleFolderPath := "api/hello/v1/"
+	module := "user2"
+	var (
+		moduleFilePath = filepath.FromSlash(gfile.Join(dstModuleFolderPath, module+".go"))
+	// 	moduleFilePathNew     = filepath.FromSlash(gfile.Join(dstModuleFolderPath, module+"_new.go"))
+	// 	ctrlName              = fmt.Sprintf(`Controller%s`, gstr.UcFirst(version))
+	// 	interfaceName         = fmt.Sprintf(`%s.I%s%s`, module, gstr.CaseCamel(module), gstr.UcFirst(version))
+	// 	newFuncName           = fmt.Sprintf(`New%s`, gstr.UcFirst(version))
+	// 	newFuncNameDefinition = fmt.Sprintf(`func %s()`, newFuncName)
+	// 	alreadyCreated        bool
+	)
+	if !gfile.Exists(moduleFilePath+".go") {
+		t := tpl.New("/")
+		if err := t.Write(moduleFilePath, "gen_templates/api.tpl", g.Map{
+			"name":    "test123",
+			"Module":  module,
+			"version": "jajajajaj",
+		}); err != nil {
+			glog.Fatal(ctx, err)
+		}
+		glog.Print(ctx, "--------------------------------")
+		glog.Printf(ctx, "generated: %s", moduleFilePath)
+	} else {
+		glog.Printf(ctx, "already exists: %s", moduleFilePath)
+	}
+
 	// cfg, err := cfg.GetByFilePath(ctx, in.Cfg)
 	// if err != nil {
 	// 	glog.Fatal(ctx, err)
