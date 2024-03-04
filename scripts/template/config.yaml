@@ -1,0 +1,30 @@
+server:
+  address:     ":8000"
+  clientMaxBodySize: 2048M
+  accessLogEnabled: true
+  errorLogEnabled: true
+
+upload:
+  path: "./resource/uploads"
+
+logger:
+  level : "all"
+  stdout: true
+
+database:
+  default:
+  - link: "sqlite::@file(./resource/db.sqlite3)"
+
+setting:
+  usemock: true
+
+minio:
+  endpoint: "192.168.1.55:9000"
+  accessKeyID: "Jgk2lf4bjJi7ttEgOfoJ"
+  secretAccessKey: "NEoSnAOx5z3XwnzFhY1jiS5mmDmzKHsR2w2TvIaB"
+  useSSL: false
+
+drone:
+  host: "http://192.168.1.55:8080"
+  token: "VLvtwHS0MSGskblUbxb3KlXWlJyTkeHp"
+

@@ -1,0 +1,9 @@
+gfcli:
+  docker:
+    build: "-a amd64 -s linux -p temp -ew"
+    tagPrefixes:
+      - my.image.pub/my-app
+  gen:
+    dao:
+      link: "sqlite::@file(./archived/case2.bash/resource/test.db)"
+      table: ""
