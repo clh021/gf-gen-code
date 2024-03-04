@@ -16,3 +16,21 @@ gen code  for goframe
 //go:generate ./generate_code.sh arg1 arg2
 go generate -run MyGenerator // 将只执行那些注释中包含 MyGenerator 字符串的命令
 ```
+
+## TODO
+
+- 支持 init 命令，生成项目，生成数据库和配置，生成 apidoc 页面(后期可不断完善初始化项目)，使可直接运行起来
+- api 生成api
+- logic 生成 logic(自动修改 ctrl )
+- api接口
+- 搜索带翻页
+- 获取一个
+- 增加一个
+- 修改一个字段
+- 修改多个字段
+- 删除一个
+- 增加多个
+- 文件上传
+- 文件下载
+- 文件压缩下载
+- 文件信息获取
