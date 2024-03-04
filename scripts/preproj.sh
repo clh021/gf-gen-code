@@ -8,7 +8,7 @@ script_dir="$(dirname "$0")"
 cd "$(dirname "$script_dir")" || exit 1
 
 # 项目名称
-test_proj_name="test_proj"
+test_proj_name=$(cat scripts/proj_name)
 # 检查项目目录是否已经存在，存在则退出
 if [ -d "$test_proj_name" ]; then
   echo "项目目录 $test_proj_name 已经存在，确需重建项目，请删除后重试"
