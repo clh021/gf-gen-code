@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS `user` (                 -- 用户管理
 INSERT INTO user VALUES(1,'admin','admin@admin.com','中国北京','2jnb22','admin','管理员','["create","history","env","user"]',NULL,'2024-01-01 01:01:01',NULL,NULL);
 INSERT INTO user VALUES(2,'user','user@user.com','中国上海','2a33ce','user','普通用户','["create","history","env"]',NULL,'2024-01-01 01:01:01',NULL,NULL);
 INSERT INTO user VALUES(3,'guest','guest@guest.com','中国武汉','242s9e','guest','访客用户','["history"]',NULL,'2024-01-01 01:01:01',NULL,NULL);
-CREATE TABLE IF NOT EXISTS `book` (                               -- 书本管理
+CREATE TABLE IF NOT EXISTS `book` (                 -- 书本管理
   `id` bigint NOT NULL,                             -- 编号
   `author_id` bigint DEFAULT '0',                   -- 会员编号
   `class` varchar(64) DEFAULT '',                   -- 应用编号
@@ -33,6 +33,7 @@ CREATE TABLE IF NOT EXISTS `book` (                               -- 书本管�
 CREATE TABLE IF NOT EXISTS `file` (                 -- 文件管理
   `id` INTEGER,                                     -- 编号
   `name` VARCHAR(55),                               -- 名称
+  `content_type` VARCHAR(255),                      -- 文件类型
   `size` INTEGER,                                   -- 大小
   `filehash` VARCHAR(255),                          -- 文件hash
   `filepath` VARCHAR(255),                          -- 文件路径

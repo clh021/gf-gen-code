@@ -5,5 +5,5 @@ gfcli:
       - my.image.pub/my-app
   gen:
     dao:
-      link: "sqlite::@file(./archived/case2.bash/resource/test.db)"
+      link: "sqlite::@file(./resource/db/test.db)"
       table: ""

@@ -27,7 +27,7 @@ var (
 		Description: "generate init resource to run server",
 		Func: func(ctx context.Context, parser *gcmd.Parser) (err error) {
 			autoGenerateFile(ctx, "config.yaml", "resource/template/config.yaml")
-			autoGenerateFile(ctx, "resource/db.sqlite3", "resource/db/test.db")
+			// autoGenerateFile(ctx, "resource/db.sqlite3", "resource/db/test.db")
 			return nil
 		},
 	}
