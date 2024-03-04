@@ -19,6 +19,7 @@ go generate -run MyGenerator // 将只执行那些注释中包含 MyGenerator �
 
 ## TODO
 
+- 支持自定义模板(有内置模板，同时支持识别项目目录下的 gen_templates 作为自定义模板目录)
 - 支持 init 命令，生成项目，生成数据库和配置，生成 apidoc 页面(后期可不断完善初始化项目)，使可直接运行起来
 - api 生成api
 - logic 生成 logic(自动修改 ctrl )

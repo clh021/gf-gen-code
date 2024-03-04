@@ -26,17 +26,18 @@ func New(tplPath string) *tpl {
 
 func (t *tpl) Parse(tplName string, params ...map[string]interface{}) (c string, e error) {
 	glog.Debug(t._ctx, "params : ", params)
-	glog.Debug(t._ctx, "tplName: ", tplName)
 	tplContent := string("")
+	tplMode := ""
 	if gfile.IsFile(tplName) {
-		glog.Debug(t._ctx, "tplMode:  file")
+		tplMode = "file"
 		tplContent = gfile.GetContents(tplName)
 	} else if gres.Contains(tplName) {
-		glog.Debug(t._ctx, "tplMode:  gres")
+		tplMode = "gres"
 		tplContent = string(gres.GetContent(tplName))
 	} else {
 		glog.Fatal(t._ctx, "tplName: ", tplName, " not found.")
 	}
+	glog.Info(t._ctx, "tplName: ", tplName, "(", tplMode, ")")
 	return t.Gv.ParseContent(t._ctx, tplContent, params...)
 }
 
