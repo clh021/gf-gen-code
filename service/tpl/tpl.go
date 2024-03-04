@@ -14,14 +14,12 @@ import (
 type tpl struct {
 	_ctx    context.Context
 	Gv      *gview.View
-	tplPath string
 }
 
-func New(tplPath string) *tpl {
+func New() *tpl {
 	_ctx := context.TODO()
 	gv := gview.New()
-	// gv.AddPath(tplPath)
-	return &tpl{_ctx, gv, tplPath}
+	return &tpl{_ctx, gv}
 }
 
 func (t *tpl) Parse(tplName string, params ...map[string]interface{}) (c string, e error) {

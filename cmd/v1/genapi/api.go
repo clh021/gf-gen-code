@@ -67,7 +67,7 @@ func (c cApi) Index(ctx context.Context, in cApiInput) (out *cApiOutput, err err
 	// 	alreadyCreated        bool
 	)
 	if !gfile.Exists(moduleFilePath+".go") {
-		t := tpl.New("/")
+		t := tpl.New()
 		if err := t.Write(moduleFilePath, "gen_templates/api.tpl", g.Map{
 			"name":    "test123",
 			"Module":  module,
