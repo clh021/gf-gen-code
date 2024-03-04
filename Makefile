@@ -28,6 +28,10 @@ format:
 gen:
 	go generate ./...
 
+.PHONY: preproj
+preproj:
+	@./scripts/preproj.sh
+
 .PHONY: test
 test:
 	./tmp/gf_gen -c ./tmp/config.yaml
