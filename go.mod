@@ -1,6 +1,6 @@
 module github.com/clh021/gf-gen-code
 
-go 1.21
+go 1.19
 
 require (
 	github.com/gogf/gf/cmd/gf/v2 v2.6.3
