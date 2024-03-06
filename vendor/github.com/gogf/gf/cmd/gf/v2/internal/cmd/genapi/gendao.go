@@ -73,6 +73,7 @@ CONFIGURATION SUPPORT
 	CGenDaoBriefDaoPath           = `directory path for storing generated dao files under path`
 	CGenDaoBriefDoPath            = `directory path for storing generated do files under path`
 	CGenDaoBriefEntityPath        = `directory path for storing generated entity files under path`
+	CGenDaoBriefApiPath           = `directory path for storing generated api files under path`
 	CGenDaoBriefOverwriteDao      = `overwrite all dao files both inside/outside internal folder`
 	CGenDaoBriefModelFile         = `custom file name for storing generated model content`
 	CGenDaoBriefModelFileForDao   = `custom file name generating model for DAO operations like Where/Data. It's empty in default`
@@ -101,6 +102,7 @@ generated json tag case for model struct, cases are as follows:
 	CGenDaoBriefTplDaoInternalPath = `template file path for dao internal file`
 	CGenDaoBriefTplDaoDoPathPath   = `template file path for dao do file`
 	CGenDaoBriefTplDaoEntityPath   = `template file path for dao entity file`
+	CGenDaoBriefTplDaoApiPath   = `template file path for dao entity file`
 
 	tplVarTableName               = `{TplTableName}`
 	tplVarTableNameCamelCase      = `{TplTableNameCamelCase}`
@@ -152,6 +154,7 @@ func init() {
 		`CGenDaoiBriefDaoPath`:            CGenDaoBriefDaoPath,
 		`CGenDaoiBriefDoPath`:             CGenDaoBriefDoPath,
 		`CGenDaoiBriefEntityPath`:         CGenDaoBriefEntityPath,
+		`CGenDaoiBriefApiPath`:            CGenDaoBriefApiPath,
 		`CGenDaoiBriefGJsonSupport`:       CGenDaoBriefGJsonSupport,
 		`CGenDaoiBriefImportPrefix`:       CGenDaoBriefImportPrefix,
 		`CGenDaoiBriefOverwriteDao`:       CGenDaoBriefOverwriteDao,
@@ -168,6 +171,7 @@ func init() {
 		`CGenDaoiBriefTplDaoInternalPath`: CGenDaoBriefTplDaoInternalPath,
 		`CGenDaoiBriefTplDaoDoPathPath`:   CGenDaoBriefTplDaoDoPathPath,
 		`CGenDaoiBriefTplDaoEntityPath`:   CGenDaoBriefTplDaoEntityPath,
+		`CGenDaoiBriefTplDaoApiPath`:      CGenDaoBriefTplDaoApiPath,
 	})
 }
 
@@ -175,7 +179,7 @@ type (
 	CGenDao      struct{}
 	CGenDaoInput struct {
 		g.Meta             `name:"api" config:"{CGenDaoiConfig}" usage:"{CGenDaoiUsage}" brief:"{CGenDaoBrief}" eg:"{CGenDaoiEg}" ad:"{CGenDaoAd}"`
-		Path               string `name:"path"                short:"p"  brief:"{CGenDaoBriefPath}" d:"internal"`
+		Path               string `name:"path"                short:"p"  brief:"{CGenDaoBriefPath}" d:"api"`
 		Link               string `name:"link"                short:"l"  brief:"{CGenDaoBriefLink}"`
 		Tables             string `name:"tables"              short:"t"  brief:"{CGenDaoBriefTables}"`
 		TablesEx           string `name:"tablesEx"            short:"x"  brief:"{CGenDaoBriefTablesEx}"`
@@ -188,10 +192,12 @@ type (
 		DaoPath            string `name:"daoPath"             short:"d"  brief:"{CGenDaoBriefDaoPath}" d:"dao"`
 		DoPath             string `name:"doPath"              short:"o"  brief:"{CGenDaoBriefDoPath}" d:"model/do"`
 		EntityPath         string `name:"entityPath"          short:"e"  brief:"{CGenDaoBriefEntityPath}" d:"model/entity"`
+		ApiPath            string `name:"apiPath"             short:"api" brief:"{CGenDaoiBriefApiPath}" d:"hello/v1"`
 		TplDaoIndexPath    string `name:"tplDaoIndexPath"     short:"t1" brief:"{CGenDaoBriefTplDaoIndexPath}"`
 		TplDaoInternalPath string `name:"tplDaoInternalPath"  short:"t2" brief:"{CGenDaoBriefTplDaoInternalPath}"`
 		TplDaoDoPath       string `name:"tplDaoDoPath"        short:"t3" brief:"{CGenDaoBriefTplDaoDoPathPath}"`
 		TplDaoEntityPath   string `name:"tplDaoEntityPath"    short:"t4" brief:"{CGenDaoBriefTplDaoEntityPath}"`
+		TplDaoApiPath      string `name:"tplDaoApiPath"       short:"t5" brief:"{CGenDaoiBriefTplDaoApiPath}"`
 		StdTime            bool   `name:"stdTime"             short:"s"  brief:"{CGenDaoBriefStdTime}" orphan:"true"`
 		WithTime           bool   `name:"withTime"            short:"w"  brief:"{CGenDaoBriefWithTime}" orphan:"true"`
 		GJsonSupport       bool   `name:"gJsonSupport"        short:"n"  brief:"{CGenDaoBriefGJsonSupport}" orphan:"true"`
@@ -218,6 +224,7 @@ type (
 		DaoInternalFilePaths []string
 		DoFilePaths          []string
 		EntityFilePaths      []string
+		ApiFilePaths         []string
 	}
 
 	DBFieldTypeName     = string
