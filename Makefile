@@ -18,7 +18,7 @@ buildStr=${gitTime}.${gitCID}.${gitTag}.${gitCount}
 build:
 	@rm -f service/tpl/build_pack_data.go
 	gf pack service/tpl/gen_templates service/tpl/build_pack_data.go -p gen_templates
-	@docker run -it --rm -v `pwd`:/app -w /app -e CGO_ENABLED=1 -u ${UID}:${GID} leehom/detect:centos7.go1.19 go build -mod vendor -ldflags "-s -w -X github.com/clh021/gf-gen-code/cmd/v1/cmd.BuiltGit=${gitCID} -X github.com/clh021/gf-gen-code/cmd/v1/cmd.BuiltTime=${gitTime}" -o tmp/gf_gen cmd/v1/*.go
+	@docker run -it --rm -v `pwd`:/app -w /app -e CGO_ENABLED=1 -u ${UID}:${GID} leehom/detect:centos7.go1.19 go build -mod vendor -ldflags "-s -w -X github.com/clh021/gf-gen-code/cmd/v2/cmd.BuiltGit=${gitCID} -X github.com/clh021/gf-gen-code/cmd/v2/cmd.BuiltTime=${gitTime}" -o tmp/gf_gen cmd/v2/*.go
 	@rm -f service/tpl/build_pack_data.go
 #	cd tmp/; zip -r -q "gf_gen.${fileTime}.zip" gf_gen
 
