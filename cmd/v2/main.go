@@ -1,4 +1,4 @@
-package v2
+package main
 
 import (
 	"github.com/clh021/gf-gen-code/utility/mlog"
@@ -8,7 +8,6 @@ import (
 )
 
 func main() {
-
 	var (
 		ctx = gctx.GetInitCtx()
 	)
