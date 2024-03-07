@@ -1,1 +1,4 @@
 vendor/github.com/gogf/gf/contrib/drivers/sqlite/v2/sqlite_table_fields.go
+vendor/github.com/gogf/gf/cmd/gf/v2/internal/cmd/genapi
+vendor/github.com/gogf/gf/cmd/gf/v2/internal/cmd/cmd_gen_api.go
+vendor/github.com/gogf/gf/cmd/gf/v2/internal/cmd/cmd_gen_api.go

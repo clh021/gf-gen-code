@@ -18,5 +18,15 @@ fi
 
 cd "$test_proj_name" || exit 1
 
+
 # ./../tmp/gf_gen -h
-./../tmp/gf_gen api1 api
+
+
+## test api
+# ./../tmp/gf_gen gen api
+# rm -rf internal/controller
+# git checkout internal/controller
+# make ctrl
+
+## test logic
+./../tmp/gf_gen gen logic
