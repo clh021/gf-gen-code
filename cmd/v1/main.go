@@ -6,8 +6,6 @@ import (
 
 	_ "github.com/clh021/gf-gen-code/service/tpl"
 
-	"github.com/clh021/gf-gen-code/cmd/v1/genapi"
-	"github.com/clh021/gf-gen-code/cmd/v1/genlogic"
 	"github.com/clh021/gf-gen-code/cmd/v1/genweb"
 	"github.com/clh021/gf-gen-code/cmd/v1/root"
 	"github.com/clh021/gf-gen-code/cmd/v1/test"
@@ -26,9 +24,6 @@ func GetCommand(ctx context.Context) (*Command, error) {
 		panic(err)
 	}
 	if err = root.AddObject(
-		genapi.Api,
-		genapi.GenApi,
-		genlogic.Logic,
 		genweb.Web,
 		test.Test,
 	); err != nil {
