@@ -21,6 +21,7 @@ type cGen struct {
 	cGenDao
 	cGenEnums
 	cGenCtrl
+	cGenLogic
 	cGenPb
 	cGenPbEntity
 	cGenService
